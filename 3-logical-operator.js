@@ -39,4 +39,36 @@ db.test.find({
     "skills.name": { $in: ["JAVASCRIPT", "PYTHON"] }
 }).project(
     { skills: 1 }
-) 
+)
+
+//=========================================================//
+
+// $not operator
+
+// Problem: Find the data of the people that excludes "Female" and whose age not greater or equal to 25.
+
+db.test.find({
+    age: { $not: { $gte: 25 } },
+    gender: { $not: { $in: ["Female"] } },
+}).project(
+    { age: 1, gender: 1 }
+)
+
+//=========================================================//
+
+// $nor operator
+
+// Problem: Find the data that exclude the mail and age 1
+
+db.test.find(
+    {
+        $nor: [
+            { gender: "Female" },
+            { age: 1 }
+        ]
+    }
+).project(
+    { age: 1, gender: 1 }
+).sort(
+    { age: 1 }
+)
