@@ -41,4 +41,12 @@ The $in operator selects the documents where the value of a field equals any val
 db.test.find({ gender: "Female", age: { $in: [18, 20, 22, 24, 26, 28, 30] } }, { age: 1, gender: 1 }).sort({ age: 1 }) // Here I have used $in operator to find the documents, whose age number matches the numbers in array.
 
 // $nin operator
-db.test.find({ gender: "Female", age: { $nin: [18, 20, 22, 24, 26, 28, 30] } }, { age: 1, gender: 1 }).sort({ age: 1 })  // $nin operator works exactly opposite of the $in operator. Here, it will exclude all the numbers that are present in the array.
+db.test.find(
+    {
+        gender: "Female",
+        age: { $nin: [18, 20, 22, 24, 26, 28, 30] }
+    }).project(
+        { age: 1, gender: 1 }
+    ).sort(
+        { age: 1 }
+    )  // $nin operator works exactly opposite of the $in operator. Here, it will exclude all the numbers that are present in the array.
