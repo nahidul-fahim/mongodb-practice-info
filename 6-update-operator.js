@@ -9,14 +9,18 @@ db.test.updateOne(
 
 //=========================================================//
 
-// $push operator
+// $unset operator
 
-// Append a value to an array. [Add another value to an array]
+// Problem: Remove a field from a document
 
 db.test.updateOne(
-    { _id: ObjectId("6406ad63fc13ae5a40000065") },
-    { $push: { interests: "Moving" } }
+    { _id: ObjectId("6406ad63fc13ae5a40000065") }, // here first, I have to identify the document, that we need to update
+    { $unset: { age: 1 } } // after finding the document, we can remove the data using the $unset operator.
 )
+
+//=========================================================//
+
+
 
 
 
