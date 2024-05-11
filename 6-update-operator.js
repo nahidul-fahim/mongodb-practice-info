@@ -17,13 +17,3 @@ db.test.updateOne(
     { _id: ObjectId("6406ad63fc13ae5a40000065") }, // here first, I have to identify the document, that we need to update
     { $unset: { age: 1 } } // after finding the document, we can remove the data using the $unset operator.
 )
-
-//=========================================================//
-
-
-
-
-
-
-
-
