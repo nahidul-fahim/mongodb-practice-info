@@ -69,3 +69,26 @@ db.test.aggregate(
         }
     }
 )
+
+
+// Problem: Count all the salary and get the sum of all the salaries and get the max and the min salary 
+
+db.test.aggregate(
+    {
+        $group: {
+            _id: null, // in case of, _id: null - it will count all the fields. 
+            totalSalary: { $sum: "$salary" }, // here I'm using $sum to count all the salaries and using $salary to refer to the salary field.
+            maxSalary: { $max: "$salary" },
+            minSalary: { $min: "$salary" },
+            avgSalary: { $avg: "$salary" },
+            totalFields: { $sum: 1 }
+        },
+    },
+    // stage - 2
+    {
+        $project: {
+            maximumSalary: "$maxSalary", // we can rename the like this way.
+            averageSalary: "$avgSalary",
+        }
+    }
+)
